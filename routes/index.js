@@ -25,9 +25,9 @@ router.post('/invite', function(req, res) {
           if (err) { return res.send('Error:' + err); }
           body = JSON.parse(body);
           if (body.ok) {
-            res.send('Ja! En Slack-inbjudan har skickats till "'+ req.body.email +'".');
+            res.status(200).send('Ja! En Slack-inbjudan har skickats till "'+ req.body.email +'".');
           } else {
-            res.send('Åh nej! ' + body.error)
+            res.status(400).send('Åh nej! ' + body.error)
           }
         });
     } else {

@@ -67,15 +67,14 @@ html
         padding-left: 100px;
       }
   body
-    h1 Prata med andra frihetsälskare på vår Slack!
+    h1 Prata om frihet på vår Slack!
     form(method="POST", action="/invite")#join-form
       p
-        label E-post
-        input(type="email", name="email", class="email" required placeholder="mises@gmail.com")#slack-email
+        label Min e-postadress:
+        input(type="email", name="email", class="email" required)#slack-email
       p
-        label Skatt är 
-        input(type="text", name="captcha" class="captcha" required)#no-robot
-      p(class="examples") (coolt, viktigt, häftigt, stöld, nödvändigt, bra, ballt, oundgängligt, juste)
+        label Skatt är:
+        input(type="text", name="captcha" class="captcha" required placeholder="coolt, stöld, viktigt, häftigt, nödvändigt, bra, ballt, oundgängligt, juste")#no-robot
       p
         input(type="submit", class="button" value="Skicka mig en inbjudan!")
     script.
