@@ -31,10 +31,10 @@ router.post('/invite', function(req, res) {
           }
         });
     } else {
-      res.status(400).send('Skatt är minsann något annat!');
+      res.status(400).send('Tänk lite till kring vad skatt egentligen är.');
     }
   } else {
-    res.status(400).send('Du måste alltså fylla i en e-postadress för att det här skall fungera.');
+    res.status(400).send('Du måste alltså fylla i din e-postadress för att det här skall fungera.');
   }
 });
 
