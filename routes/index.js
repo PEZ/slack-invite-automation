@@ -24,13 +24,13 @@ router.post('/invite', function(req, res) {
         if (err) { return res.send('Error:' + err); }
         body = JSON.parse(body);
         if (body.ok) {
-          res.send('Success! Check "'+ req.body.email +'" for an invite from Slack.');
+          res.send('Ja! En Slack-inbjudan har skickats till "'+ req.body.email +'".');
         } else {
-          res.send('Failed! ' + body.error)
+          res.send('Åh nej! ' + body.error)
         }
       });
   } else {
-    res.status(400).send('email is required.');
+    res.status(400).send('Du måste alltså fylla i en e-postadress för att det här skall fungera.');
   }
 });
 
