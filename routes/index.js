@@ -9,26 +9,30 @@ router.get('/', function(req, res) {
 
 router.post('/invite', function(req, res) {
   if (req.body.email) {
-    request.post({
-        url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
-        form: {
-          email: req.body.email,
-          token: config.slacktoken,
-          set_active: true
-        }
-      }, function(err, httpResponse, body) {
-        // body looks like:
-        //   {"ok":true}
-        //       or
-        //   {"ok":false,"error":"already_invited"}
-        if (err) { return res.send('Error:' + err); }
-        body = JSON.parse(body);
-        if (body.ok) {
-          res.send('Ja! En Slack-inbjudan har skickats till "'+ req.body.email +'".');
-        } else {
-          res.send('Åh nej! ' + body.error)
-        }
-      });
+    if (req.body.captcha.toLowerCase() == 'stöld') {
+      request.post({
+          url: 'https://'+ config.slackUrl + '/api/users.admin.invite',
+          form: {
+            email: req.body.email,
+            token: config.slacktoken,
+            set_active: true
+          }
+        }, function(err, httpResponse, body) {
+          // body looks like:
+          //   {"ok":true}
+          //       or
+          //   {"ok":false,"error":"already_invited"}
+          if (err) { return res.send('Error:' + err); }
+          body = JSON.parse(body);
+          if (body.ok) {
+            res.send('Ja! En Slack-inbjudan har skickats till "'+ req.body.email +'".');
+          } else {
+            res.send('Åh nej! ' + body.error)
+          }
+        });
+    } else {
+      res.status(400).send('Skatt är minsann något annat!');
+    }
   } else {
     res.status(400).send('Du måste alltså fylla i en e-postadress för att det här skall fungera.');
   }

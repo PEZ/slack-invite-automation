@@ -4,43 +4,86 @@ html
     title Prata med andra frihetsälskare på vår Slack!
     style.
       body {
+        text-align: center;
         padding: 0px;
         font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
       }
+      form {
+        max-width: 400px;
+        margin: 0 auto;
+        text-align: left;
+      }
+      p {
+        margin-bottom: 20px;
+        overflow: auto;
+      }
       input {
-        font-size: 18px;
-      }
-      input.email {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        background-color:#fafafa;
+        font-size: 1em;
+        width: 70%;
+        float: left;
         border: 1px solid #ccc;
-        border-radius: 3px;
-        box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
-        width: 400px;
+        outline: none;
       }
-      input.button {
+      label {
+        float: left;
+        display: block;
+        width: 100px;
+        padding: 10px 0;
+      }
+      .email, .captcha {
+        padding: 10px;
+        box-sizing: border-box;
+      }
+      .email:focus,.captcha:focus {
+      border-bottom: 2px solid #ccc;
+      }
+      .email {
+        width: 200px;
+      }
+      .captcha {
+        width: 100px;
+      }
+      .button {
+        margin: 0 15%;
+        display: inline-block;
         color: #fff;
-        padding: 6px 12px;
-        font-size: 16px;
-        font-weight: bold;
-        text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
-        background-color: #60b044;
-        background-image: -webkit-linear-gradient(#8add6d, #60b044);
-        background-image: linear-gradient(#8add6d, #60b044);
-        border-color: 1px solid #5ca941;
+        padding: 10px 20px;
+        background-color: #3F9CC3;
+        border: none;
         border-radius: 3px;
+        border-bottom: 2px solid #2E7B9B;
+      }
+      .button:hover, .button:focus {
+        background-color: #47ABD5;
+        border-color: #3184A7;
+      }
+      .button:active {
+        margin-top:1px;
+        border-bottom: 1px solid #2E7B9B;
+      }
+      .examples {
+        color: #bbb;
+        font-style: italic;
+        padding-left: 100px;
       }
   body
     h1 Prata med andra frihetsälskare på vår Slack!
     form(method="POST", action="/invite")#join-form
-      input(type="text", name="email", class="email" placeholder="E-postadress")#slack-email
-      input(type="submit", class="button" value="Skicka mig en inbjudan!")
+      p
+        label E-post
+        input(type="email", name="email", class="email" required placeholder="mises@gmail.com")#slack-email
+      p
+        label Skatt är 
+        input(type="text", name="captcha" class="captcha" required)#no-robot
+      p(class="examples") (coolt, viktigt, häftigt, stöld, nödvändigt, bra, ballt, oundgängligt, juste)
+      p
+        input(type="submit", class="button" value="Skicka mig en inbjudan!")
     script.
       var form = document.getElementById('join-form');
       var email = document.getElementById('slack-email')
+      var captcha = document.getElementById('no-robot')
       form.addEventListener('submit', function(evt) {
-        if (!email.value) {
+        if (!email.value && !captcha.value) {
           evt.preventDefault();
         }
       });
