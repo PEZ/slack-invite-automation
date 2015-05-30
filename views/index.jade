@@ -8,7 +8,7 @@ html
         font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
       }
       input {
-        font-size: 24px;
+        font-size: 18px;
       }
       input.email {
         margin-top: 10px;
@@ -21,17 +21,21 @@ html
       }
       input.button {
         color: #fff;
+        padding: 6px 12px;
+        font-size: 16px;
+        font-weight: bold;
         text-shadow: 0 -1px 0 rgba(0,0,0,0.15);
         background-color: #60b044;
         background-image: -webkit-linear-gradient(#8add6d, #60b044);
         background-image: linear-gradient(#8add6d, #60b044);
-        border-color: #5ca941;
+        border-color: 1px solid #5ca941;
+        border-radius: 3px;
       }
   body
     h1 Prata med andra frihetsälskare på vår Slack!
     form(method="POST", action="/invite")#join-form
-      input(type="text", name="email", class="email" placeholder="Fyll i din e-postadress")#slack-email
-      input(type="submit", class="button" value="Skicka mig en inbjudan")
+      input(type="text", name="email", class="email" placeholder="E-postadress")#slack-email
+      input(type="submit", class="button" value="Skicka mig en inbjudan!")
     script.
       var form = document.getElementById('join-form');
       var email = document.getElementById('slack-email')
